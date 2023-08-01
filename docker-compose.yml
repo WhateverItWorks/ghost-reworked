@@ -1,0 +1,49 @@
+#https://hub.docker.com/_/ghost/
+version: '3.7'
+
+services:
+
+  ghost:
+    container_name: ghost
+    hostname: ghost
+    image: ghost:latest
+    restart: always
+    read_only: true
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+    ports:
+      - '127.0.0.1:2368:2368'
+    depends_on:
+      - ghostdb
+    environment:
+      database__client: mysql
+      database__connection__host: ghostdb
+      database__connection__user: root
+      database__connection__password: changethis
+      database__connection__database: ghost
+      url: https://changethis
+      mail__transport: SMTP
+      mail__options__host: changethis
+      mail__options__port: 465
+      mail__options__auth__user: changethis
+      mail__options__auth__pass: changethis
+    volumes:
+      - ./data:/var/lib/ghost/content
+
+  ghostdb:
+    container_name: ghostdb
+    hostname: ghostdb
+    image: mysql:8.0
+    restart: always
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      MYSQL_ROOT_PASSWORD: changethis
+    volumes:
+      - ./ghost/mysql:/var/lib/mysql
