@@ -1,0 +1,19 @@
+<style type='text/css'>
+
+    /* Hide the Membership/Subscribe subsystem */
+    a.gh-head-button,
+    #ghost-portal-root,
+    .footer-cta,
+    .gh-head-actions,
+    .site-footer a[href^="https://ghost.org"] { display: none; }
+    .gh-head-inner { grid-template-columns: auto auto; }
+    .gh-head-brand { max-width: 400px; }
+    .site-footer-nav ul, .gh-head-menu { justify-content: flex-end; }
+
+    /* make serif Article font match sans-serif index page font */
+    /* Set font-family on body if you want to tweak it. */
+    article.post p {
+        font-family: inherit;
+    }
+
+</style>
