@@ -1,14 +1,14 @@
 #https://hub.docker.com/_/ghost/
-version: '3.7'
+#https://hub.docker.com/_/mysql
+
+version: '3.9'
 
 services:
-
   ghost:
     container_name: ghost
     hostname: ghost
     image: ghost:latest
     restart: always
-    read_only: true
     security_opt:
       - no-new-privileges:true
     cap_drop:
